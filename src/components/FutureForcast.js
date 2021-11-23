@@ -14,7 +14,7 @@ export default function FutureForcast(props) {
     }
 
     const kelvinToFahrenheit = (num) => {
-        let fahrenheit = Math.ceil((num - 273.15) * 9) / 5 + 32;
+        let fahrenheit = ((num - 273.15) * 9) / 5 + 32;
         return Math.ceil(fahrenheit);
     }
 

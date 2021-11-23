@@ -4,12 +4,11 @@ import FutureForcast from './FutureForcast';
 
 export default function WeatherApi () {
     const [weather, setWeather] = useState([]);
-    const API = 'a5cce44d5ea6f7812807aeaabd8bb7ac';
     let long = '-118.39';
     let lat = '34.02';
 
     useEffect(() => {
-        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude={part}&appid=${API}`)
+        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude={part}&appid=${process.env.REACT_APP_WEATHER_API}`)
         .then(res => res.json())
         .then(data => setWeather(data))
 
