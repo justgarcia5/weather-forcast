@@ -4,8 +4,8 @@ export default function FutureForcast(props) {
     const [fourDayForcast, setFourDayForcast] = useState(null);
 
     useEffect(() => {
-            if(props.weather.daily)
-                setFourDayForcast(() => props.weather.daily.filter((day, index) => index < 5))
+        if(props.weather.daily)
+            setFourDayForcast(() => props.weather.daily.filter((day, index) => index < 5))
     }, [props.weather.daily])
 
     const unixConverter = (num) => {

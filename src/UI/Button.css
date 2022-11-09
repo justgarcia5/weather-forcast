@@ -1,0 +1,18 @@
+.button {
+  border: none;
+  background-color: white;
+  color: rgb(5, 5, 250);
+  font-size: 18px;
+  margin: 16px 4px 0 4px;
+  cursor: pointer;
+}
+
+.button:hover,
+.button-active {
+  color: grey;
+  border: none;
+  background-color: white;
+  font-size: 18px;
+  margin: 16px 4px 0 4px;
+  cursor: pointer;
+}
