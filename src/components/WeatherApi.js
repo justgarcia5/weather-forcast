@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import FutureForcast from './FutureForcast';
-import Button from '../../src/UI/Button';
+import TodaysWeather from './TodaysWeather';
 
 const locations = [
     {
@@ -45,17 +45,22 @@ export default function WeatherApi () {
         return Math.ceil(fahrenheit);
     }
 
-    if(weather) console.log(weather.current)
     return(
         <div>
-            {locations.map((val, i) => {
-                return <Button className={`${val.location === location ? 'button-active' : 'button'}`} key={val.location} type='button' onClick={() => locationToggleHandler(val.lat, val.long, val.location)}>{val.location}</Button>
-            })}
-            <h1>{location}</h1>
-            {weather && <h1>{kelvinToFahrenheit(weather.current.temp) + '°'}</h1>}
-            {weather && unixConverter(weather.daily[0].dt)}
+            {weather &&
+                <TodaysWeather
+                    locations={locations}
+                    location={location}
+                    weather={weather}
+                    unixConverter={unixConverter}
+                    kelvinToFahrenheit={kelvinToFahrenheit}
+                    locationToggleHandler={locationToggleHandler}
+                />
+            }
             <FutureForcast
                 weather={weather}
+                unixConverter={unixConverter}
+                kelvinToFahrenheit={kelvinToFahrenheit}
             />
         </div>
     )

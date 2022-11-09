@@ -3,20 +3,12 @@ import { useState, useEffect } from "react"
 export default function FutureForcast(props) {
     const [fourDayForcast, setFourDayForcast] = useState(null);
 
+    const { kelvinToFahrenheit, unixConverter } = props;
+
     useEffect(() => {
         if(props.weather.daily)
             setFourDayForcast(() => props.weather.daily.filter((day, index) => index < 5))
     }, [props.weather.daily])
-
-    const unixConverter = (num) => {
-        let a = new Date(num * 1000);
-        return a.toString().slice(0,3);
-    }
-
-    const kelvinToFahrenheit = (num) => {
-        let fahrenheit = ((num - 273.15) * 9) / 5 + 32;
-        return Math.ceil(fahrenheit);
-    }
 
     return(
         <div className='cards-div'>
