@@ -42,10 +42,13 @@ export default function WeatherApi () {
         setLocation(location)
     }
 
-    const unixConverter = (num) => {
+    const unixConverter = (num, shortDate) => {
         let a = new Date(num * 1000);
         console.log(a)
-        return a.toString().slice(0,3);
+        if (shortDate)
+            return a.toString().slice(0,3);
+        else
+            return a.toString().slice(0,16);
     }
 
     const kelvinToFahrenheit = (num) => {

@@ -16,7 +16,7 @@ export default function FutureForcast(props) {
                 fourDayForcast.map((day, index) => {
                     return(
                         <div key={index} className='cards'>
-                            <h4>{unixConverter(day.dt)}</h4>
+                            <h4>{unixConverter(day.dt, true)}</h4>
                             <img src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`} alt='weather icon' />
                             <div className='temp-div'>
                                 <p>{kelvinToFahrenheit(day.temp.max) + '°'}</p>
