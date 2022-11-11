@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import FutureForcast from './FutureForcast';
 import TodaysWeather from './TodaysWeather';
+import Button from '../../src/UI/Button'
 
 const locations = [
     {
@@ -14,6 +15,12 @@ const locations = [
         location: 'Sacramento',
         long: '-121.4944',
         lat: '38.5816'
+    },
+    {
+
+        location: 'New York City',
+        long: '-74.0060',
+        lat: '40.7128'
     }
 ];
 
@@ -37,6 +44,7 @@ export default function WeatherApi () {
 
     const unixConverter = (num) => {
         let a = new Date(num * 1000);
+        console.log(a)
         return a.toString().slice(0,3);
     }
 
@@ -47,14 +55,15 @@ export default function WeatherApi () {
 
     return(
         <div>
-            {weather &&
+            {locations.map((val, i) => {
+            return <Button className={`${val.location === location ? 'button-active' : 'button'}`} key={val.location} type='button' onClick={() => locationToggleHandler(val.lat, val.long, val.location)}>{val.location}</Button>
+        })}
+            {weather.length !== 0 &&
                 <TodaysWeather
-                    locations={locations}
                     location={location}
                     weather={weather}
                     unixConverter={unixConverter}
                     kelvinToFahrenheit={kelvinToFahrenheit}
-                    locationToggleHandler={locationToggleHandler}
                 />
             }
             <FutureForcast

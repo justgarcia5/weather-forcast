@@ -1,18 +1,18 @@
 import React from 'react';
 
-import Button from '../../src/UI/Button';
-
 const TodaysWeather = props => {
-  const { locations, location, unixConverter, kelvinToFahrenheit, weather, locationToggleHandler } = props;
+  const {location, kelvinToFahrenheit, weather } = props;
+
+  const unixConverter = (num) => {
+      let a = new Date(num * 1000);
+      return a.toString().slice(0,16);
+  }
 
   return <div>
-    {locations.map((val, i) => {
-                return <Button className={`${val.location === location ? 'button-active' : 'button'}`} key={val.location} type='button' onClick={() => locationToggleHandler(val.lat, val.long, val.location)}>{val.location}</Button>
-            })}
-            <h1>{location}</h1>
-            {/* {weather && <h1>{kelvinToFahrenheit(weather.current.temp) + '°'}</h1>}
-            {weather && unixConverter(weather.daily[0].dt)} */}
-  </div>
+        <h1>{location}</h1>
+        <h2>Currently {kelvinToFahrenheit(weather.current.temp) + '°'}</h2>
+        {unixConverter(weather.daily[0].dt)}
+    </div>
 }
 
 export default TodaysWeather;
